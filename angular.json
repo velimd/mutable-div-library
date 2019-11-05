@@ -124,6 +124,41 @@
           }
         }
       }
+    },
+    "mutable-div": {
+      "projectType": "library",
+      "root": "projects/mutable-div",
+      "sourceRoot": "projects/mutable-div/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/mutable-div/tsconfig.lib.json",
+            "project": "projects/mutable-div/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/mutable-div/src/test.ts",
+            "tsConfig": "projects/mutable-div/tsconfig.spec.json",
+            "karmaConfig": "projects/mutable-div/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/mutable-div/tsconfig.lib.json",
+              "projects/mutable-div/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }},
   "defaultProject": "mutable-div-library"
 }

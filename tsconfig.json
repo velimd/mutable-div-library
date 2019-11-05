@@ -17,7 +17,15 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "mutable-div": [
+        "dist/mutable-div"
+      ],
+      "mutable-div/*": [
+        "dist/mutable-div/*"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
