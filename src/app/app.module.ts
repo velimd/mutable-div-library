@@ -1,8 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { MutableDivModule } from 'mutable-div';
 
 import { AppComponent } from './app.component';
+import { MutableDivModule } from '../../projects/mutable-div/src/lib/mutable-div.module';
 
 @NgModule({
   declarations: [

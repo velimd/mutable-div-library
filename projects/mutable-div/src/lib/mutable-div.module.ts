@@ -1,12 +1,15 @@
 import { NgModule } from '@angular/core';
-import { MutableDivComponent } from './mutable-div.component';
+import { DraggableElementDirective } from './draggable-element.directive';
 
 
 
 @NgModule({
-  declarations: [MutableDivComponent],
-  imports: [
+  declarations: [
+    DraggableElementDirective
   ],
-  exports: [MutableDivComponent]
+  imports: [],
+  exports: [
+    DraggableElementDirective
+  ]
 })
 export class MutableDivModule { }
