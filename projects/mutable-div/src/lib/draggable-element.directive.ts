@@ -9,22 +9,33 @@ export class DraggableElementDirective {
   originalPosition: Position;
   private mouseDown: boolean = false;
 
-  constructor(private elementRef: ElementRef) {
-    elementRef.nativeElement.style.position = 'absolute';
+  constructor(private el: ElementRef) {
+    el.nativeElement.style.position = 'absolute';
   }
 
-  @HostListener('mousedown') onMouseDown() {
+  @HostListener('mousedown', ['$event']) onMouseDown(event: MouseEvent) {
+    event.preventDefault();
     this.mouseDown = true;
     this.originalPosition = {
-      x: this.elementRef.nativeElement.offsetLeft,
-      y: this.elementRef.nativeElement.offsetTop
+      x: event.clientX,
+      y: event.clientY
     };
   }
 
   @HostListener('mousemove', ['$event']) onMouseMove(event: MouseEvent) {
+    event.preventDefault();
     if (this.mouseDown) {
-      this.elementRef.nativeElement.style.left = event.clientX + 'px';
-      this.elementRef.nativeElement.style.top = event.clientY + 'px';
+      const element = this.el.nativeElement;
+      const newPosition: Position = {
+        x: event.clientX - this.originalPosition.x ,
+        y: event.clientY - this.originalPosition.y
+      };
+      this.originalPosition = {
+        x: event.clientX,
+        y: event.clientY
+      };
+      element.style.left = (element.offsetLeft + newPosition.x) + 'px';
+      element.style.top = (element.offsetTop + newPosition.y) + 'px';
     }
   }
 
