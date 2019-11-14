@@ -32,7 +32,7 @@ export class DraggableElementDirective {
     }
   }
 
-  @HostListener('mouseup') onMouseUp() {
+  @HostListener('window:mouseup') onMouseUp() {
     this.mouseDown = false;
   }
 
