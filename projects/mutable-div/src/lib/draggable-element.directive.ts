@@ -18,7 +18,6 @@ export class DraggableElementDirective {
   @HostListener('mousedown', ['$event']) onMouseDown(event: MouseEvent) {
     event.preventDefault();
     this.mouseDown = true;
-    console.log(this.mouseDown)
     this.setOriginalPosition(event);
   }
 
