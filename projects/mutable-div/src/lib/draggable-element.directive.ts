@@ -18,21 +18,26 @@ export class DraggableElementDirective {
   @HostListener('mousedown', ['$event']) onMouseDown(event: MouseEvent) {
     event.preventDefault();
     this.mouseDown = true;
+    console.log(this.mouseDown)
     this.setOriginalPosition(event);
+    // document.onmouseup = this.onMouseUp()
   }
 
   @HostListener('mousemove', ['$event']) onMouseMove(event: MouseEvent) {
     event.preventDefault();
     if (this.mouseDown) {
+      // console.log(this.mouseDown)
       const element = this.el.nativeElement;
       const newPosition = this.setNewPosition(event);
       this.setOriginalPosition(event);
       element.style.left = (element.offsetLeft + newPosition.x) + 'px';
       element.style.top = (element.offsetTop + newPosition.y) + 'px';
+      // console.log("element.style.left = " + element.style.left)
+      // console.log("element.style.top = " + element.style.top)
     }
   }
 
-  @HostListener('mouseup') onMouseUp() {
+  @HostListener('window:mouseup') onMouseUp() {
     this.mouseDown = false;
   }
 
@@ -62,6 +67,8 @@ export class DraggableElementDirective {
           y: event.clientY
         };
     }
+    // console.log("Original Position: {x: " + this.originalPosition.x + ", y: " + this.originalPosition.y + "}")
+    // console.log("")curl -X POST -H 'Content-type: application/json' --data '{"text":"Hello, World!"}' https://hooks.slack.com/services/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
   }
 
   private setNewPosition(event: MouseEvent): Position {
@@ -94,6 +101,7 @@ export class DraggableElementDirective {
           y: event.clientY - this.originalPosition.y
         };
     }
+    // console.log("New Position: {x: " + newPosition.x + ", y: " + newPosition.y + "}")
     return newPosition;
   }
 }
