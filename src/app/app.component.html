@@ -1,1 +1,7 @@
-<div id="block" [draggable]></div>
+<button class="button left" (click)="rotateC90()">-90</button>
+<button class="button right" (click)="rotate90()">90</button>
+<div [ngClass]="'container rotation' + rotation">
+  <div >
+    <div id="block" draggable [rotate]="rotation"></div>
+  </div>
+</div>

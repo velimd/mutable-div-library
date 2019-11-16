@@ -6,5 +6,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'mutable-div-library';
+  rotation = 0;
+
+  rotate90() {
+    this.rotation = (this.rotation + 90) %360;
+  }
+
+  rotateC90() {
+    this.rotation = (this.rotation + 270) %360;
+  }
 }
