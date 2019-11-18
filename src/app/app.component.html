@@ -1,1 +1,11 @@
-<div id="block" [draggable]></div>
+<div class="buttonContainer">
+    <div  style="text-align: center;">
+        <button (click)="rotateAntiClockwise()">Anti-Clockwise</button>
+        <button (click)="rotateClockwise()">Clockwise</button>
+    </div>
+</div>
+<!-- <div [ngClass]="'rot' + rotate">
+    <div id="block" [draggable] ></div>
+</div> -->
+<div [ngClass]="'rot' + rotate" id="block" [draggable] ><h1>TEST</h1></div>
+<!-- [rotate]="rotate" -->
