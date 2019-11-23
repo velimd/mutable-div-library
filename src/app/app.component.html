@@ -1,7 +1,19 @@
 <div class="wrapper">
   <button class="button left" (click)="rotateC90()">-90</button>
   <button class="button right" (click)="rotate90()">90</button>
+  <button class="button right" (click)="stepZoom(-0.1)">-</button>
+  <button class="button right" (click)="stepZoom(0.1)">+</button>
   <div [ngClass]="'container rotation' + rotation">
-    <div id="block" draggable [rotate]="rotation">Test Block</div>
+    <div #block
+         id="block"
+         draggable
+         [rotate]="rotation"
+         class="rectangle"
+         [style.width]="rectangle.width * zoom + 'px'"
+         [style.height]="rectangle.height * zoom + 'px'"
+         [style.left]="rectangle.x * zoom + 'px'"
+         [style.top]="rectangle.y * zoom + 'px'">
+      Test Block
+    </div>
   </div>
 </div>
