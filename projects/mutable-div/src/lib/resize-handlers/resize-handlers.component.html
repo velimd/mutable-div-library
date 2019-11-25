@@ -1,6 +1,22 @@
 <div class="resize-handlers">
-  <div #handle class="TOP-LEFT handle" (mousedown)="onMouseDown(handle.className, $event)"></div>
-  <div #handle class="TOP-Right handle" (mousedown)="onMouseDown(handle.className, $event)"></div>
-  <div #handle class="BOTTOM-LEFT handle" (mousedown)="onMouseDown(handle.className, $event)"></div>
-  <div #handle class="BOTTOM-RIGHT handle" (mousedown)="onMouseDown($event)" (mousemove)="resize(handle.className ,$event)"></div>
+  <div #handle #topLeft
+       class="TOP-LEFT handle"
+       draggable
+       (mousedown)="onMouseDown($event)"
+       (coordinates)="resize(topLeft.className, $event)"></div>
+  <div #handle #topRight
+       class="TOP-RIGHT handle"
+       draggable
+       (mousedown)="onMouseDown($event)"
+       (coordinates)="resize(topRight.className, $event)"></div>
+  <div #handle #bottomLeft
+       class="BOTTOM-LEFT handle"
+       draggable
+       (mousedown)="onMouseDown($event)"
+       (coordinates)="resize(bottomLeft.className, $event)"></div>
+  <div #handle #bottomRight
+       class="BOTTOM-RIGHT handle"
+       draggable
+       (mousedown)="onMouseDown($event)"
+       (coordinates)="resize(bottomRight.className, $event)"></div>
 </div>
