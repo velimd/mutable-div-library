@@ -1,5 +1,6 @@
 import {AfterViewInit, Component, ElementRef, Input, OnInit, QueryList, ViewChildren} from '@angular/core';
-import {element} from 'protractor';
+import {Size} from '../model/size.model';
+import {Position} from '../model/position.model';
 
 @Component({
   selector: 'lib-resize-handlers',
@@ -8,10 +9,12 @@ import {element} from 'protractor';
 })
 export class ResizeHandlersComponent implements AfterViewInit {
 
-  @Input() height: number;
-  @Input() width: number;
+  @Input() parentElement: ElementRef;
 
   @ViewChildren('handle') handles: QueryList<ElementRef>;
+
+  elementSize: Size;
+  originalPosition: Position;
 
   constructor() { }
 
@@ -40,5 +43,26 @@ export class ResizeHandlersComponent implements AfterViewInit {
           break;
       }
     });
+  }
+
+  private setOriginalPosition(event: MouseEvent): void {
+    this.originalPosition = {
+      x: event.clientX,
+      y: event.clientY
+    };
+  }
+
+  onMouseDown(event: MouseEvent) {
+    event.stopPropagation();
+    this.setOriginalPosition(event);
+  }
+
+  resize(className: string, event: MouseEvent) {
+    if (className.includes('BOTTOM-RIGHT')) {
+      this.parentElement.nativeElement.style.width =
+        this.parentElement.nativeElement.style.width + (event.clientX - this.originalPosition.x) + 'px';
+      this.parentElement.nativeElement.style.height =
+        this.parentElement.nativeElement.style.height + (event.clientY - this.originalPosition.y) + 'px';
+    }
   }
 }
