@@ -1,17 +1,25 @@
-import {AfterViewInit, Component, ElementRef, Input, OnInit, QueryList, ViewChildren} from '@angular/core';
-import {Position} from '../model/position.model';
-import {Size} from '../model/size.model';
-import {HandleBar} from '../model/handle-bar.model';
+import {
+  AfterViewInit,
+  Component, DoCheck,
+  ElementRef,
+  Input,
+  QueryList,
+  ViewChildren
+} from '@angular/core';
+import { Position } from '../model/position.model';
+import { Size } from '../model/size.model';
+import { HandleBar } from '../model/handle-bar.model';
 
 @Component({
   selector: 'lib-resize-handlers',
   templateUrl: './resize-handlers.component.html',
   styleUrls: ['./resize-handlers.component.css']
 })
-export class ResizeHandlersComponent implements AfterViewInit {
+export class ResizeHandlersComponent implements AfterViewInit, DoCheck {
 
   @Input() parentElement: ElementRef;
   @Input() rotate: number;
+  @Input() selected = false;
 
   @ViewChildren('handle') handles: QueryList<ElementRef>;
 
@@ -21,6 +29,12 @@ export class ResizeHandlersComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     this.setHandlePositions();
+  }
+
+  ngDoCheck(): void {
+    if (this.selected) {
+      this.setHandlePositions();
+    }
   }
 
   setHandlePositions(): void {

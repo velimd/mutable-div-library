@@ -1,12 +1,23 @@
-import {AfterViewInit, ComponentFactoryResolver, Directive, ElementRef, Input, OnInit, ViewContainerRef} from '@angular/core';
-import {ResizeHandlersComponent} from './resize-handlers/resize-handlers.component';
+import {
+  AfterViewInit,
+  ComponentFactoryResolver,
+  ComponentRef,
+  Directive,
+  ElementRef,
+  HostListener,
+  Input,
+  ViewContainerRef
+} from '@angular/core';
+import { ResizeHandlersComponent } from './resize-handlers/resize-handlers.component';
 
 @Directive({
   selector: '[resizable]'
 })
 export class ResizableElementDirective implements AfterViewInit {
 
-  @Input() rotate: number = 0;
+  @Input() rotate = 0;
+
+  resizeHandlersComponent: ComponentRef<ResizeHandlersComponent>;
 
   constructor(private el: ElementRef,
               private container: ViewContainerRef,
@@ -18,9 +29,20 @@ export class ResizableElementDirective implements AfterViewInit {
 
   addHandlersToElement() {
     const component = this.componentFactoryResolver.resolveComponentFactory(ResizeHandlersComponent);
-    const resizeHandlersComponent = this.container.createComponent(component);
-    resizeHandlersComponent.instance.parentElement = this.el;
-    resizeHandlersComponent.instance.rotate = this.rotate;
-    this.el.nativeElement.appendChild(resizeHandlersComponent.location.nativeElement);
+    this.resizeHandlersComponent = this.container.createComponent(component);
+    this.resizeHandlersComponent.instance.parentElement = this.el;
+    this.resizeHandlersComponent.instance.rotate = this.rotate;
+    this.resizeHandlersComponent.instance.selected = false;
+    this.el.nativeElement.appendChild(this.resizeHandlersComponent.location.nativeElement);
+  }
+
+  @HostListener('mousedown') onMouseDown() {
+    this.resizeHandlersComponent.instance.selected = true;
+  }
+
+  @HostListener('window:mouseup', ['$event.target']) onMouseUp(targetEvent) {
+    if (!this.el.nativeElement.contains(targetEvent)) {
+      this.resizeHandlersComponent.instance.selected = false;
+    }
   }
 }

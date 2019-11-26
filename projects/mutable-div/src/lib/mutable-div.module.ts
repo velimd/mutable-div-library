@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { DraggableElementDirective } from './draggable-element.directive';
 import { ResizableElementDirective } from './resizable-element.directive';
 import { ResizeHandlersComponent } from './resize-handlers/resize-handlers.component';
+import { CommonModule } from '@angular/common';
 
 
 
@@ -11,7 +12,9 @@ import { ResizeHandlersComponent } from './resize-handlers/resize-handlers.compo
     ResizableElementDirective,
     ResizeHandlersComponent
   ],
-  imports: [],
+  imports: [
+    CommonModule
+  ],
   entryComponents: [ResizeHandlersComponent],
   exports: [
     DraggableElementDirective,
