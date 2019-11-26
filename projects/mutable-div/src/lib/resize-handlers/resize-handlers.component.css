@@ -1,5 +1,11 @@
 .resize-handlers {
-  z-index: 1000;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 2px solid #424242;
+  box-sizing: border-box;
 }
 
 .handle {
@@ -8,5 +14,5 @@
   height: 10px;
   border-radius: 50%;
   background: white;
-  border: 3px solid #4286f4;
+  border: 3px solid #424242;
 }
