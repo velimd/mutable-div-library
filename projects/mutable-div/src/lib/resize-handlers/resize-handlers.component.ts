@@ -1,6 +1,7 @@
 import {AfterViewInit, Component, ElementRef, Input, OnInit, QueryList, ViewChildren} from '@angular/core';
 import {Position} from '../model/position.model';
 import {Size} from '../model/size.model';
+import {HandleBar} from '../model/handle-bar.model';
 
 @Component({
   selector: 'lib-resize-handlers',
@@ -10,6 +11,7 @@ import {Size} from '../model/size.model';
 export class ResizeHandlersComponent implements AfterViewInit {
 
   @Input() parentElement: ElementRef;
+  @Input() rotate: number;
 
   @ViewChildren('handle') handles: QueryList<ElementRef>;
 
@@ -25,31 +27,25 @@ export class ResizeHandlersComponent implements AfterViewInit {
     this.handles.forEach((element, index) => {
       switch (index) {
         case 0:
-          element.nativeElement.style.left = '-7px';
-          element.nativeElement.style.top = '-7px';
-          element.nativeElement.style.right = '';
-          element.nativeElement.style.bottom = '';
+          this.setHandleStyles(element, { left: '-7px', right: '', top: '-7px', bottom: '' });
           break;
         case 1:
-          element.nativeElement.style.right = '-7px';
-          element.nativeElement.style.top = '-7px';
-          element.nativeElement.style.left = '';
-          element.nativeElement.style.bottom = '';
+          this.setHandleStyles(element, { left: '', right: '-7px', top: '-7px', bottom: '' });
           break;
         case 2:
-          element.nativeElement.style.left = '-7px';
-          element.nativeElement.style.bottom = '-7px';
-          element.nativeElement.style.right = '';
-          element.nativeElement.style.top = '';
+          this.setHandleStyles(element, { left: '-7px', right: '', top: '', bottom: '-7px' });
           break;
-        case 3:
-          element.nativeElement.style.right = '-7px';
-          element.nativeElement.style.bottom = '-7px';
-          element.nativeElement.style.left = '';
-          element.nativeElement.style.top = '';
-          break;
+        default:
+          this.setHandleStyles(element, { left: '', right: '-7px', top: '', bottom: '-7px' });
       }
     });
+  }
+
+  setHandleStyles(element: ElementRef, styles: HandleBar) {
+    element.nativeElement.style.left = styles.left;
+    element.nativeElement.style.right = styles.right;
+    element.nativeElement.style.top = styles.top;
+    element.nativeElement.style.bottom = styles.bottom;
   }
 
   onMouseDown(event: MouseEvent) {
