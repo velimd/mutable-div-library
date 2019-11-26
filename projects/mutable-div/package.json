@@ -1,6 +1,22 @@
 {
   "name": "mutable-div",
   "version": "0.0.1",
+  "description": "Directives to enable moving or resizing a div element.",
+  "author": "Veli D",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/velimd/mutable-div-library.git"
+  },
+  "bugs": {
+    "url": "https://github.com/velimd/mutable-div-library/issues"
+  },
+  "homepage": "https://github.com/velimd/mutable-div-library",
+  "keywords": [
+    "angular",
+    "typscript",
+    "directive"
+  ],
+  "license": "SEE LICENSE IN LICENSE",
   "peerDependencies": {
     "@angular/common": "^8.2.13",
     "@angular/core": "^8.2.13"

@@ -1,4 +1,4 @@
-import {Directive, ElementRef, HostListener, Input} from '@angular/core';
+import {Directive, ElementRef, EventEmitter, HostListener, Input, Output} from '@angular/core';
 import { Position } from './model/position.model';
 
 @Directive({
@@ -10,6 +10,7 @@ export class DraggableElementDirective {
   private mouseDown: boolean = false;
 
   @Input() rotate: number;
+  @Output() coordinates = new EventEmitter<Position>();
 
   constructor(private el: ElementRef) {
     el.nativeElement.style.position = 'absolute';
@@ -21,7 +22,7 @@ export class DraggableElementDirective {
     this.setOriginalPosition(event);
   }
 
-  @HostListener('mousemove', ['$event']) onMouseMove(event: MouseEvent) {
+  @HostListener('window:mousemove', ['$event']) onMouseMove(event: MouseEvent) {
     event.preventDefault();
     if (this.mouseDown) {
       const element = this.el.nativeElement;
@@ -29,6 +30,7 @@ export class DraggableElementDirective {
       this.setOriginalPosition(event);
       element.style.left = (element.offsetLeft + newPosition.x) + 'px';
       element.style.top = (element.offsetTop + newPosition.y) + 'px';
+      this.coordinates.emit({ x: newPosition.x, y: newPosition.y });
     }
   }
 
