@@ -1,5 +1,4 @@
 import {AfterViewInit, Component, ElementRef, Input, OnInit, QueryList, ViewChildren} from '@angular/core';
-import {Size} from '../model/size.model';
 import {Position} from '../model/position.model';
 
 @Component({
@@ -13,7 +12,7 @@ export class ResizeHandlersComponent implements AfterViewInit {
 
   @ViewChildren('handle') handles: QueryList<ElementRef>;
 
-  originalPosition: Position;
+  minimumSize = 20;
 
   constructor() { }
 
@@ -59,29 +58,46 @@ export class ResizeHandlersComponent implements AfterViewInit {
   resize(className: string, coordinates: Position) {
     const parentElement = this.parentElement.nativeElement;
     if (className.includes('TOP-LEFT')) {
-      parentElement.style.left = parentElement.offsetLeft + coordinates.x + 'px';
-      parentElement.style.top = parentElement.offsetTop + coordinates.y + 'px';
-      parentElement.style.width =
-        Math.max(parentElement.offsetWidth - coordinates.x, 20) + 'px';
-      parentElement.style.height =
-        Math.max(parentElement.offsetHeight - coordinates.y, 20) + 'px';
+      const width = parentElement.offsetWidth - coordinates.x;
+      const height = parentElement.offsetHeight - coordinates.y;
+      if (width > this.minimumSize) {
+        parentElement.style.left = parentElement.offsetLeft + coordinates.x + 'px';
+        parentElement.style.width = width + 'px';
+
+      }
+      if (height > this.minimumSize) {
+        parentElement.style.top = parentElement.offsetTop + coordinates.y + 'px';
+        parentElement.style.height = height + 'px';
+      }
     } else if (className.includes('TOP-RIGHT')) {
-      parentElement.style.width =
-        Math.max(parentElement.offsetWidth + coordinates.x, 20) + 'px';
-      parentElement.style.top = parentElement.offsetTop + coordinates.y + 'px';
-      parentElement.style.height =
-        Math.max(parentElement.offsetHeight - coordinates.y, 20) + 'px';
+      const width = parentElement.offsetWidth + coordinates.x;
+      const height = parentElement.offsetHeight - coordinates.y;
+      if (width > this.minimumSize) {
+        parentElement.style.width = width + 'px';
+      }
+      if (height > this.minimumSize) {
+        parentElement.style.top = parentElement.offsetTop + coordinates.y + 'px';
+        parentElement.style.height = height + 'px';
+      }
     } else if (className.includes('BOTTOM-LEFT')) {
-      parentElement.style.left = parentElement.offsetLeft + coordinates.x + 'px';
-      parentElement.style.width =
-        Math.max(parentElement.offsetWidth - coordinates.x, 20) + 'px';
-      parentElement.style.height =
-        Math.max(parentElement.offsetHeight + coordinates.y, 20) + 'px';
+      const width = parentElement.offsetWidth - coordinates.x;
+      const height = parentElement.offsetHeight + coordinates.y;
+      if (width > this.minimumSize) {
+        parentElement.style.left = parentElement.offsetLeft + coordinates.x + 'px';
+        parentElement.style.width = width + 'px';
+      }
+      if (height > this.minimumSize) {
+        parentElement.style.height = height + 'px';
+      }
     } else if (className.includes('BOTTOM-RIGHT')) {
-      parentElement.style.width =
-        Math.max(parentElement.offsetWidth + coordinates.x, 20) + 'px';
-      parentElement.style.height =
-        Math.max(parentElement.offsetHeight + coordinates.y, 20) + 'px';
+      const width = parentElement.offsetWidth + coordinates.x;
+      const height = parentElement.offsetHeight + coordinates.y;
+      if (width > this.minimumSize) {
+        parentElement.style.width = width + 'px';
+      }
+      if (height > this.minimumSize) {
+        parentElement.style.height = height + 'px';
+      }
     }
     this.setHandlePositions();
   }
