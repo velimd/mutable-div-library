@@ -28,7 +28,6 @@ export class DraggableElementDirective {
   }
 
   @HostListener('window:mousemove', ['$event']) onMouseMove(event: MouseEvent) {
-    event.preventDefault();
     if (this.mouseDown) {
       const element = this.el.nativeElement;
       const newPosition = this.setNewPosition(event);
