@@ -42,7 +42,7 @@ export class ResizableElementDirective implements AfterViewInit {
     this.resizeHandlersComponent.instance.selected = true;
   }
 
-  @HostListener('mouseupn') onMouseUp() {
+  @HostListener('mouseup') onMouseUp() {
     this.stopped.emit();
   }
 

@@ -23,6 +23,10 @@ export class DraggableElementDirective {
     this.setOriginalPosition(event);
   }
 
+  @HostListener('mouseup') onMouseUp() {
+    this.stopped.emit();
+  }
+
   @HostListener('window:mousemove', ['$event']) onMouseMove(event: MouseEvent) {
     event.preventDefault();
     if (this.mouseDown) {
@@ -35,9 +39,8 @@ export class DraggableElementDirective {
     }
   }
 
-  @HostListener('window:mouseup') onMouseUp() {
+  @HostListener('window:mouseup') onWindowMouseUp() {
     this.mouseDown = false;
-    this.stopped.emit();
   }
 
   private setOriginalPosition(event: MouseEvent): void {
