@@ -16,7 +16,6 @@ import { ResizeHandlersComponent } from './resize-handlers/resize-handlers.compo
 export class ResizableElementDirective implements AfterViewInit {
 
   @Input() rotate = 0;
-  @Input() selected = false;
   @Output() stopped = new EventEmitter();
 
   resizeHandlersComponent: ComponentRef<ResizeHandlersComponent>;
@@ -26,7 +25,9 @@ export class ResizableElementDirective implements AfterViewInit {
               private componentFactoryResolver: ComponentFactoryResolver) {}
 
   ngAfterViewInit(): void {
-    this.addHandlersToElement();
+    setTimeout(() => {
+      this.addHandlersToElement();
+    }, 0);
   }
 
   addHandlersToElement() {
@@ -34,7 +35,7 @@ export class ResizableElementDirective implements AfterViewInit {
     this.resizeHandlersComponent = this.container.createComponent(component);
     this.resizeHandlersComponent.instance.parentElement = this.el;
     this.resizeHandlersComponent.instance.rotate = this.rotate;
-    this.resizeHandlersComponent.instance.selected = this.selected;
+    this.resizeHandlersComponent.instance.selected = false;
     this.el.nativeElement.appendChild(this.resizeHandlersComponent.location.nativeElement);
   }
 
