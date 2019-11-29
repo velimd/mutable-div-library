@@ -94,7 +94,7 @@ export class ResizeHandlersComponent implements AfterViewInit, DoCheck {
   calculatingPosition(parentElement: any, className: string, coordinates: Position): Size {
     switch (this.rotate) {
       case 90:
-        const size = {
+        return {
           width: className.includes('LEFT') ? parentElement.offsetWidth - coordinates.y : parentElement.offsetWidth + coordinates.y,
           height: className.includes('TOP') ? parentElement.offsetHeight + coordinates.x :  parentElement.offsetHeight - coordinates.x,
           position: {
@@ -102,12 +102,26 @@ export class ResizeHandlersComponent implements AfterViewInit, DoCheck {
             y: parentElement.offsetTop - coordinates.x
           }
         };
-        console.log(size);
-        return size;
         break;
       case 180:
+        return {
+          width: className.includes('LEFT') ? parentElement.offsetWidth + coordinates.x : parentElement.offsetWidth - coordinates.x,
+          height: className.includes('TOP') ? parentElement.offsetHeight + coordinates.y :  parentElement.offsetHeight - coordinates.y,
+          position: {
+            x: parentElement.offsetLeft - coordinates.x,
+            y: parentElement.offsetTop - coordinates.y
+          }
+        };
         break;
       case 270:
+        return {
+          width: className.includes('LEFT') ? parentElement.offsetWidth + coordinates.y : parentElement.offsetWidth - coordinates.y,
+          height: className.includes('TOP') ? parentElement.offsetHeight - coordinates.x :  parentElement.offsetHeight + coordinates.x,
+          position: {
+            x: parentElement.offsetLeft - coordinates.y,
+            y: parentElement.offsetTop + coordinates.x
+          }
+        };
         break;
       default:
         return {
