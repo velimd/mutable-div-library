@@ -68,14 +68,7 @@ export class ResizeHandlersComponent implements AfterViewInit, DoCheck {
 
   resize(className: string, coordinates: Position) {
     const parentElement = this.parentElement.nativeElement;
-    const size: Size = {
-      width: className.includes('LEFT') ? parentElement.offsetWidth - coordinates.x : parentElement.offsetWidth + coordinates.x,
-      height: className.includes('TOP') ?  parentElement.offsetHeight - coordinates.y :  parentElement.offsetHeight + coordinates.y,
-      position: {
-        x: parentElement.offsetLeft + coordinates.x,
-        y: parentElement.offsetTop + coordinates.y
-      }
-    };
+    const size = this.calculatingPosition(parentElement, className, coordinates);
     if (size.width > this.minimumSize && size.height > this.minimumSize) {
       if (className.includes('TOP-LEFT')) {
         parentElement.style.left = size.position.x + 'px';
@@ -96,5 +89,35 @@ export class ResizeHandlersComponent implements AfterViewInit, DoCheck {
       }
     }
     this.setHandlePositions();
+  }
+
+  calculatingPosition(parentElement: any, className: string, coordinates: Position): Size {
+    switch (this.rotate) {
+      case 90:
+        const size = {
+          width: className.includes('LEFT') ? parentElement.offsetWidth - coordinates.y : parentElement.offsetWidth + coordinates.y,
+          height: className.includes('TOP') ? parentElement.offsetHeight + coordinates.x :  parentElement.offsetHeight - coordinates.x,
+          position: {
+            x: parentElement.offsetLeft + coordinates.y,
+            y: parentElement.offsetTop - coordinates.x
+          }
+        };
+        console.log(size);
+        return size;
+        break;
+      case 180:
+        break;
+      case 270:
+        break;
+      default:
+        return {
+          width: className.includes('LEFT') ? parentElement.offsetWidth - coordinates.x : parentElement.offsetWidth + coordinates.x,
+          height: className.includes('TOP') ?  parentElement.offsetHeight - coordinates.y :  parentElement.offsetHeight + coordinates.y,
+          position: {
+            x: parentElement.offsetLeft + coordinates.x,
+            y: parentElement.offsetTop + coordinates.y
+          }
+        };
+    }
   }
 }
