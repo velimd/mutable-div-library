@@ -11,6 +11,7 @@ export class DraggableElementDirective {
 
   @Input() rotate = 0;
   @Output() coordinates = new EventEmitter<Position>();
+  @Output() stopped = new EventEmitter();
 
   constructor(private el: ElementRef) {
     el.nativeElement.style.position = 'absolute';
@@ -36,6 +37,7 @@ export class DraggableElementDirective {
 
   @HostListener('window:mouseup') onMouseUp() {
     this.mouseDown = false;
+    this.stopped.emit();
   }
 
   private setOriginalPosition(event: MouseEvent): void {

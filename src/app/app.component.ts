@@ -37,4 +37,8 @@ export class AppComponent implements AfterViewInit {
   stepZoom(value: number) {
     this.zoom += value;
   }
+
+  onStopped() {
+    console.log('stopped');
+  }
 }

@@ -3,9 +3,9 @@ import {
   ComponentFactoryResolver,
   ComponentRef,
   Directive,
-  ElementRef,
+  ElementRef, EventEmitter,
   HostListener,
-  Input,
+  Input, Output,
   ViewContainerRef
 } from '@angular/core';
 import { ResizeHandlersComponent } from './resize-handlers/resize-handlers.component';
@@ -16,6 +16,7 @@ import { ResizeHandlersComponent } from './resize-handlers/resize-handlers.compo
 export class ResizableElementDirective implements AfterViewInit {
 
   @Input() rotate = 0;
+  @Output() stopped = new EventEmitter();
 
   resizeHandlersComponent: ComponentRef<ResizeHandlersComponent>;
 
@@ -41,7 +42,11 @@ export class ResizableElementDirective implements AfterViewInit {
     this.resizeHandlersComponent.instance.selected = true;
   }
 
-  @HostListener('window:mouseup', ['$event.target']) onMouseUp(targetEvent) {
+  @HostListener('mouseupn') onMouseUp() {
+    this.stopped.emit();
+  }
+
+  @HostListener('window:mouseup', ['$event.target']) onWindowMouseUp(targetEvent) {
     if (!this.el.nativeElement.contains(targetEvent)) {
       this.resizeHandlersComponent.instance.selected = false;
     }
