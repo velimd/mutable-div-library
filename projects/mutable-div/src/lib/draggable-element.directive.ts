@@ -9,7 +9,7 @@ export class DraggableElementDirective {
   originalPosition: Position;
   private mouseDown: boolean = false;
 
-  @Input() rotate: number;
+  @Input() rotate = 0;
   @Output() coordinates = new EventEmitter<Position>();
 
   constructor(private el: ElementRef) {

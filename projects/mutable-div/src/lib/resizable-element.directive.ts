@@ -37,6 +37,7 @@ export class ResizableElementDirective implements AfterViewInit {
   }
 
   @HostListener('mousedown') onMouseDown() {
+    this.resizeHandlersComponent.instance.rotate = this.rotate;
     this.resizeHandlersComponent.instance.selected = true;
   }
 
