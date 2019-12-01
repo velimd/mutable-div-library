@@ -5,7 +5,7 @@ import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements AfterViewInit {
+export class AppComponent {
 
   @ViewChild('block', {static: false}) block: ElementRef;
 
@@ -17,13 +17,9 @@ export class AppComponent implements AfterViewInit {
   };
   rotation = 0;
   zoom = 1;
+  selected = false;
 
   constructor() {
-  }
-
-  ngAfterViewInit(): void {
-    this.rectangle.x = this.block.nativeElement.style.left;
-    this.rectangle.y = this.block.nativeElement.style.top;
   }
 
   rotate90() {

@@ -1,11 +1,14 @@
 import {
-  AfterViewInit,
+  OnInit,
   ComponentFactoryResolver,
   ComponentRef,
   Directive,
-  ElementRef, EventEmitter,
+  ElementRef,
+  EventEmitter,
   HostListener,
-  Input, Output,
+  Input,
+  Output,
+  OnChanges,
   ViewContainerRef
 } from '@angular/core';
 import { ResizeHandlersComponent } from './resize-handlers/resize-handlers.component';
@@ -13,9 +16,10 @@ import { ResizeHandlersComponent } from './resize-handlers/resize-handlers.compo
 @Directive({
   selector: '[resizable]'
 })
-export class ResizableElementDirective implements AfterViewInit {
+export class ResizableElementDirective implements OnInit, OnChanges {
 
   @Input() rotate = 0;
+  @Input() selected = false;
   @Output() stopped = new EventEmitter();
 
   resizeHandlersComponent: ComponentRef<ResizeHandlersComponent>;
@@ -24,10 +28,15 @@ export class ResizableElementDirective implements AfterViewInit {
               private container: ViewContainerRef,
               private componentFactoryResolver: ComponentFactoryResolver) {}
 
-  ngAfterViewInit(): void {
-    setTimeout(() => {
-      this.addHandlersToElement();
-    }, 0);
+  ngOnInit(): void {
+    this.addHandlersToElement();
+  }
+
+  ngOnChanges(): void {
+    if (this.resizeHandlersComponent) {
+      this.resizeHandlersComponent.instance.selected = this.selected;
+      this.resizeHandlersComponent.instance.rotate = this.rotate;
+    }
   }
 
   addHandlersToElement() {
@@ -35,12 +44,11 @@ export class ResizableElementDirective implements AfterViewInit {
     this.resizeHandlersComponent = this.container.createComponent(component);
     this.resizeHandlersComponent.instance.parentElement = this.el;
     this.resizeHandlersComponent.instance.rotate = this.rotate;
-    this.resizeHandlersComponent.instance.selected = false;
+    this.resizeHandlersComponent.instance.selected = this.selected;
     this.el.nativeElement.appendChild(this.resizeHandlersComponent.location.nativeElement);
   }
 
   @HostListener('mousedown') onMouseDown() {
-    this.resizeHandlersComponent.instance.rotate = this.rotate;
     this.resizeHandlersComponent.instance.selected = true;
   }
 

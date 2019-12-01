@@ -9,6 +9,7 @@
          draggable
          resizable
          [rotate]="rotation"
+         [selected]="selected"
          (stopped)="onStopped()"
          class="rectangle"
          [style.width]="rectangle.width * zoom + 'px'"

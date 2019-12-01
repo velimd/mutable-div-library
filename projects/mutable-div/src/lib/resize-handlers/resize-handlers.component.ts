@@ -1,8 +1,9 @@
 import {
   AfterViewInit,
-  Component, DoCheck,
+  Component,
   ElementRef,
   Input,
+  OnChanges,
   QueryList,
   ViewChildren
 } from '@angular/core';
@@ -15,7 +16,7 @@ import { HandleBar } from '../model/handle-bar.model';
   templateUrl: './resize-handlers.component.html',
   styleUrls: ['./resize-handlers.component.css']
 })
-export class ResizeHandlersComponent implements AfterViewInit, DoCheck {
+export class ResizeHandlersComponent implements AfterViewInit, OnChanges {
 
   @Input() parentElement: ElementRef;
   @Input() rotate: number;
@@ -31,7 +32,7 @@ export class ResizeHandlersComponent implements AfterViewInit, DoCheck {
     this.setHandlePositions();
   }
 
-  ngDoCheck(): void {
+  ngOnChanges(): void {
     if (this.selected) {
       this.setHandlePositions();
     }
