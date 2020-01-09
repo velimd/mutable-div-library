@@ -63,7 +63,7 @@ export class ResizeHandlersComponent implements AfterViewInit, OnChanges {
     element.nativeElement.style.bottom = styles.bottom;
   }
 
-  onMouseDown(event: MouseEvent) {
+  onPointerDown(event: PointerEvent) {
     event.stopPropagation();
   }
 

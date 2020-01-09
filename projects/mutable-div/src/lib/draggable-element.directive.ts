@@ -7,7 +7,7 @@ import { Position } from './model/position.model';
 export class DraggableElementDirective {
 
   originalPosition: Position;
-  private mouseDown: boolean = false;
+  private pointerDown: boolean = false;
 
   @Input() rotate = 0;
   @Output() coordinates = new EventEmitter<Position>();
@@ -17,18 +17,18 @@ export class DraggableElementDirective {
     el.nativeElement.style.position = 'absolute';
   }
 
-  @HostListener('mousedown', ['$event']) onMouseDown(event: MouseEvent) {
+  @HostListener('pointerdown', ['$event']) onPointerDown(event: PointerEvent) {
     event.preventDefault();
-    this.mouseDown = true;
+    this.pointerDown = true;
     this.setOriginalPosition(event);
   }
 
-  @HostListener('mouseup') onMouseUp() {
+  @HostListener('pointerup') onPointerUp() {
     this.stopped.emit();
   }
 
-  @HostListener('window:mousemove', ['$event']) onMouseMove(event: MouseEvent) {
-    if (this.mouseDown) {
+  @HostListener('window:pointermove', ['$event']) onPointerMove(event: PointerEvent) {
+    if (this.pointerDown) {
       const element = this.el.nativeElement;
       const newPosition = this.setNewPosition(event);
       this.setOriginalPosition(event);
@@ -38,11 +38,11 @@ export class DraggableElementDirective {
     }
   }
 
-  @HostListener('window:mouseup') onWindowMouseUp() {
-    this.mouseDown = false;
+  @HostListener('window:pointerup') onWindowPointerUp() {
+    this.pointerDown = false;
   }
 
-  private setOriginalPosition(event: MouseEvent): void {
+  private setOriginalPosition(event: PointerEvent): void {
     switch (this.rotate) {
       case 90:
         this.originalPosition = {
@@ -70,7 +70,7 @@ export class DraggableElementDirective {
     }
   }
 
-  private setNewPosition(event: MouseEvent): Position {
+  private setNewPosition(event: PointerEvent): Position {
     let newPosition: Position = {
       x: 0,
       y: 0

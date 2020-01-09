@@ -2,21 +2,21 @@
   <div #handle #topLeft
        class="TOP-LEFT handle"
        draggable
-       (mousedown)="onMouseDown($event)"
+       (pointerdown)="onPointerDown($event)"
        (coordinates)="resize(topLeft.className, $event)"></div>
   <div #handle #topRight
        class="TOP-RIGHT handle"
        draggable
-       (mousedown)="onMouseDown($event)"
+       (pointerdown)="onPointerDown($event)"
        (coordinates)="resize(topRight.className, $event)"></div>
   <div #handle #bottomLeft
        class="BOTTOM-LEFT handle"
        draggable
-       (mousedown)="onMouseDown($event)"
+       (pointerdown)="onPointerDown($event)"
        (coordinates)="resize(bottomLeft.className, $event)"></div>
   <div #handle #bottomRight
        class="BOTTOM-RIGHT handle"
        draggable
-       (mousedown)="onMouseDown($event)"
+       (pointerdown)="onPointerDown($event)"
        (coordinates)="resize(bottomRight.className, $event)"></div>
 </div>
