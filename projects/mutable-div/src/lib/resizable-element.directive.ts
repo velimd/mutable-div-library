@@ -48,15 +48,15 @@ export class ResizableElementDirective implements OnInit, OnChanges {
     this.el.nativeElement.appendChild(this.resizeHandlersComponent.location.nativeElement);
   }
 
-  @HostListener('mousedown') onMouseDown() {
+  @HostListener('pointerdown') onPointerDown() {
     this.resizeHandlersComponent.instance.selected = true;
   }
 
-  @HostListener('mouseup') onMouseUp() {
+  @HostListener('pointerup') onPointerUp() {
     this.stopped.emit();
   }
 
-  @HostListener('window:mouseup', ['$event.target']) onWindowMouseUp(targetEvent) {
+  @HostListener('window:pointerup', ['$event.target']) onWindowPointerUp(targetEvent) {
     if (!this.el.nativeElement.contains(targetEvent)) {
       this.resizeHandlersComponent.instance.selected = false;
     }
