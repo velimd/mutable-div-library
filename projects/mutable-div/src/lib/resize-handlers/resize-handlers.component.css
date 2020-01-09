@@ -22,9 +22,23 @@
   top: -7px;
 }
 
+.TOP-LEFT:hover {
+  border-radius: unset;
+  background: transparent;
+  border-bottom: black;
+  border-right: black;
+}
+
 .TOP-RIGHT {
   right: -7px;
   top: -7px;
+}
+
+.TOP-RIGHT:hover {
+  border-radius: unset;
+  background: transparent;
+  border-bottom: black;
+  border-left: black;
 }
 
 .BOTTOM-LEFT {
@@ -32,7 +46,21 @@
   bottom: -7px;
 }
 
+.BOTTOM-LEFT:hover {
+  border-radius: unset;
+  background: transparent;
+  border-top: black;
+  border-right: black;
+}
+
 .BOTTOM-RIGHT {
   right: -7px;
   bottom: -7px;
+}
+
+.BOTTOM-RIGHT:hover {
+  border-radius: unset;
+  background: transparent;
+  border-top: black;
+  border-left: black;
 }
