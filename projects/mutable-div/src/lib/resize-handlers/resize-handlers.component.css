@@ -10,10 +10,10 @@
 
 .handle {
   position: absolute;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
+  width: 20px;
+  height: 20px;
   background: white;
+  opacity: 50%;
   border: 3px solid #424242;
 }
 
@@ -22,7 +22,8 @@
   top: -7px;
 }
 
-.TOP-LEFT:hover {
+.TOP-LEFT:hover,
+.TOP-LEFT:active {
   border-radius: unset;
   background: transparent;
   border-bottom: black;
@@ -34,7 +35,8 @@
   top: -7px;
 }
 
-.TOP-RIGHT:hover {
+.TOP-RIGHT:hover,
+.TOP-RIGHT:active {
   border-radius: unset;
   background: transparent;
   border-bottom: black;
@@ -46,7 +48,8 @@
   bottom: -7px;
 }
 
-.BOTTOM-LEFT:hover {
+.BOTTOM-LEFT:hover,
+.BOTTOM-LEFT:active {
   border-radius: unset;
   background: transparent;
   border-top: black;
@@ -58,7 +61,8 @@
   bottom: -7px;
 }
 
-.BOTTOM-RIGHT:hover {
+.BOTTOM-RIGHT:hover,
+.BOTTOM-RIGHT:active {
   border-radius: unset;
   background: transparent;
   border-top: black;

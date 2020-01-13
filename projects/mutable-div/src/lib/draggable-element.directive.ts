@@ -42,6 +42,22 @@ export class DraggableElementDirective {
     this.pointerDown = false;
   }
 
+  @HostListener('panstart', ['$event']) onPanStart(event: any) {
+    this.onPointerDown(event.srcEvent);
+  }
+
+  @HostListener('panend') onPanEnd() {
+      this.onPointerUp();
+  }
+
+  @HostListener('window:panmove', ['$event']) onPanMove(event: any) {
+    this.onPointerMove(event.srcEvent);
+  }
+
+  @HostListener('window:panend') onWindowPanEnd() {
+    this.onWindowPointerUp();
+  }
+
   private setOriginalPosition(event: PointerEvent): void {
     switch (this.rotate) {
       case 90:
