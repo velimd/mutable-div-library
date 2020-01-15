@@ -14,12 +14,13 @@
   height: 20px;
   background: white;
   opacity: 50%;
-  border: 3px solid #424242;
 }
 
 .TOP-LEFT {
   left: -7px;
   top: -7px;
+  border-top: 3px solid #424242;
+  border-left: 3px solid #424242;
 }
 
 .TOP-LEFT:hover,
@@ -33,6 +34,8 @@
 .TOP-RIGHT {
   right: -7px;
   top: -7px;
+  border-top: 3px solid #424242;
+  border-right: 3px solid #424242;
 }
 
 .TOP-RIGHT:hover,
@@ -46,6 +49,8 @@
 .BOTTOM-LEFT {
   left: -7px;
   bottom: -7px;
+  border-bottom: 3px solid #424242;
+  border-left: 3px solid #424242;
 }
 
 .BOTTOM-LEFT:hover,
@@ -59,6 +64,8 @@
 .BOTTOM-RIGHT {
   right: -7px;
   bottom: -7px;
+  border-bottom: 3px solid #424242;
+  border-right: 3px solid #424242;
 }
 
 .BOTTOM-RIGHT:hover,
