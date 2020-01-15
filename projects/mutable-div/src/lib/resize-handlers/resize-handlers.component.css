@@ -10,19 +10,21 @@
 
 .handle {
   position: absolute;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
+  width: 20px;
+  height: 20px;
   background: white;
-  border: 3px solid #424242;
+  opacity: 50%;
 }
 
 .TOP-LEFT {
   left: -7px;
   top: -7px;
+  border-top: 3px solid #424242;
+  border-left: 3px solid #424242;
 }
 
-.TOP-LEFT:hover {
+.TOP-LEFT:hover,
+.TOP-LEFT:active {
   border-radius: unset;
   background: transparent;
   border-bottom: black;
@@ -32,9 +34,12 @@
 .TOP-RIGHT {
   right: -7px;
   top: -7px;
+  border-top: 3px solid #424242;
+  border-right: 3px solid #424242;
 }
 
-.TOP-RIGHT:hover {
+.TOP-RIGHT:hover,
+.TOP-RIGHT:active {
   border-radius: unset;
   background: transparent;
   border-bottom: black;
@@ -44,9 +49,12 @@
 .BOTTOM-LEFT {
   left: -7px;
   bottom: -7px;
+  border-bottom: 3px solid #424242;
+  border-left: 3px solid #424242;
 }
 
-.BOTTOM-LEFT:hover {
+.BOTTOM-LEFT:hover,
+.BOTTOM-LEFT:active {
   border-radius: unset;
   background: transparent;
   border-top: black;
@@ -56,9 +64,12 @@
 .BOTTOM-RIGHT {
   right: -7px;
   bottom: -7px;
+  border-bottom: 3px solid #424242;
+  border-right: 3px solid #424242;
 }
 
-.BOTTOM-RIGHT:hover {
+.BOTTOM-RIGHT:hover,
+.BOTTOM-RIGHT:active {
   border-radius: unset;
   background: transparent;
   border-top: black;
