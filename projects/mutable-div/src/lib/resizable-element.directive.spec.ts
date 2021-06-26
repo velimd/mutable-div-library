@@ -4,6 +4,7 @@ import { By } from '@angular/platform-browser';
 import { ResizableElementDirective } from './resizable-element.directive';
 import { ResizeHandlersComponent } from './resize-handlers/resize-handlers.component';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
+import { DraggableElementDirective } from './draggable-element.directive';
 
 @Component({
   template: `
@@ -23,7 +24,7 @@ describe('ResizableElementDirective', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ResizableElementDirective, ResizeHandlersComponent, TestComponent]
+      declarations: [ResizableElementDirective, ResizeHandlersComponent, DraggableElementDirective, TestComponent]
     }).overrideModule(BrowserDynamicTestingModule, {
       set: {
         entryComponents: [ResizeHandlersComponent]
@@ -58,4 +59,47 @@ describe('ResizableElementDirective', () => {
 
     expect(fixture.debugElement.query(By.css('.resize-handlers'))).toBeFalsy();
   });
+
+  it('select div and resize', () => {
+    dispatchEvent(0, '.BOTTOM-RIGHT');
+
+    expect(divEl.nativeElement.style.width).toBe('200px');
+    expect(divEl.nativeElement.style.height).toBe('200px');
+  });
+
+  it('select div and resize with rotation 90 degrees', () => {
+    dispatchEvent(90, '.TOP-RIGHT');
+
+    expect(divEl.nativeElement.style.width).toBe('200px');
+    expect(divEl.nativeElement.style.height).toBe('200px');
+  });
+
+  it('select div and resize with rotation 180 degrees', () => {
+    dispatchEvent(180, '.TOP-LEFT');
+
+    expect(divEl.nativeElement.style.width).toBe('200px');
+    expect(divEl.nativeElement.style.height).toBe('200px');
+  });
+
+  it('select div and resize with rotation 270 degrees', () => {
+    dispatchEvent(270, '.BOTTOM-LEFT');
+
+    expect(divEl.nativeElement.style.width).toBe('200px');
+    expect(divEl.nativeElement.style.height).toBe('200px');
+  });
+
+  const dispatchEvent = (rotation: number, handlebar: string) => {
+    component.rotate = rotation;
+    fixture.detectChanges();
+
+    divEl.nativeElement.dispatchEvent(new MouseEvent('pointerdown'));
+    fixture.detectChanges();
+
+    const topRightHandle = fixture.debugElement.query(By.css(handlebar));
+
+    topRightHandle.nativeElement.dispatchEvent(new MouseEvent('pointerdown', { clientX: 0, clientY: 0 }));
+    window.dispatchEvent(new MouseEvent('pointermove', { clientX: 100, clientY: 100 }));
+    document.dispatchEvent(new MouseEvent('pointerup', { bubbles: true }));
+    fixture.detectChanges();
+  };
 });
