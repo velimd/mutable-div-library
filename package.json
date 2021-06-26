@@ -1,6 +1,6 @@
 {
   "name": "mutable-div-library",
-  "version": "0.0.11",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
