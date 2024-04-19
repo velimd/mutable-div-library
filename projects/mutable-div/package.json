@@ -17,6 +17,9 @@
     "directive"
   ],
   "license": "SEE LICENSE IN LICENSE",
+  "dependencies": {
+    "tslib": "^2.0.0"
+  },
   "peerDependencies": {
     "@angular/common": "^9.2.13",
     "@angular/core": "^9.2.13",
