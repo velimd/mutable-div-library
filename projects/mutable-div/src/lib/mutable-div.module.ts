@@ -7,18 +7,17 @@ import { CommonModule } from '@angular/common';
 
 
 @NgModule({
-  declarations: [
-    DraggableElementDirective,
-    ResizableElementDirective,
-    ResizeHandlersComponent
-  ],
-  imports: [
-    CommonModule
-  ],
-  entryComponents: [ResizeHandlersComponent],
-  exports: [
-    DraggableElementDirective,
-    ResizableElementDirective,
-  ]
+    declarations: [
+        DraggableElementDirective,
+        ResizableElementDirective,
+        ResizeHandlersComponent
+    ],
+    imports: [
+        CommonModule
+    ],
+    exports: [
+        DraggableElementDirective,
+        ResizableElementDirective,
+    ]
 })
 export class MutableDivModule { }
