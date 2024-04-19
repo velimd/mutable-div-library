@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { MutableDivModule } from '../../projects/mutable-div/src/lib/mutable-div.module';
+// import { MutableDivModule } from 'mutable-div'; // build version
 
 @NgModule({
   declarations: [
