@@ -1,6 +1,5 @@
 import {
   OnInit,
-  ComponentFactoryResolver,
   ComponentRef,
   Directive,
   ElementRef,
@@ -24,9 +23,7 @@ export class ResizableElementDirective implements OnInit, OnChanges {
 
   resizeHandlersComponent: ComponentRef<ResizeHandlersComponent>;
 
-  constructor(private el: ElementRef,
-              private container: ViewContainerRef,
-              private componentFactoryResolver: ComponentFactoryResolver) {}
+  constructor(private el: ElementRef, private container: ViewContainerRef) {}
 
   ngOnInit(): void {
     this.addHandlersToElement();
@@ -40,8 +37,7 @@ export class ResizableElementDirective implements OnInit, OnChanges {
   }
 
   addHandlersToElement() {
-    const component = this.componentFactoryResolver.resolveComponentFactory(ResizeHandlersComponent);
-    this.resizeHandlersComponent = this.container.createComponent(component);
+    this.resizeHandlersComponent = this.container.createComponent(ResizeHandlersComponent);
     this.resizeHandlersComponent.instance.parentElement = this.el;
     this.resizeHandlersComponent.instance.rotate = this.rotate;
     this.resizeHandlersComponent.instance.selected = this.selected;

@@ -3,7 +3,6 @@ import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { ResizableElementDirective } from './resizable-element.directive';
 import { ResizeHandlersComponent } from './resize-handlers/resize-handlers.component';
-import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 import { DraggableElementDirective } from './draggable-element.directive';
 
 @Component({
@@ -25,10 +24,6 @@ describe('ResizableElementDirective', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [ResizableElementDirective, ResizeHandlersComponent, DraggableElementDirective, TestComponent]
-    }).overrideModule(BrowserDynamicTestingModule, {
-      set: {
-        entryComponents: [ResizeHandlersComponent]
-      }
     });
     fixture = TestBed.createComponent(TestComponent);
     component = fixture.componentInstance;
