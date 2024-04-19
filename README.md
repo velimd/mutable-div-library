@@ -5,7 +5,7 @@ This is an Angular project which was created to enable changing the div element 
 ## Getting Started
 
 ### Prerequisites
-You will requires these in order to run it locally:
+You will require these in order to run it locally:
 ```
 Angular cli
 ```
