@@ -1,6 +1,6 @@
 {
   "name": "mutable-div",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "description": "Directives to enable moving or resizing a div element.",
   "author": "Veli D",
   "repository": {
