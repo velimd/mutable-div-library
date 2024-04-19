@@ -8,10 +8,8 @@
     "test": "cd projects/mutable-div; ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "copy-readme": "cp README.md dist/mutable-div",
     "copy-license": "cp ./LICENSE dist/mutable-div",
-    "copy-docs": "npm run copy-readme && npm run copy-license",
-    "package": "ng build mutable-div && npm run copy-docs"
+    "package": "ng build mutable-div --configuration production && npm run copy-license"
   },
   "private": false,
   "dependencies": {
