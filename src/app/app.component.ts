@@ -10,10 +10,10 @@ export class AppComponent {
   @ViewChild('block', {static: false}) block: ElementRef;
 
   rectangle = {
-    x: '20',
-    y: '180',
-    height: '150',
-    width: '100'
+    x: 20,
+    y: 180,
+    height: 150,
+    width: 100
   };
   rotation = 0;
   zoom = 1;
